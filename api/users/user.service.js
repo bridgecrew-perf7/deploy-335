@@ -3,19 +3,19 @@ const pool = require("../../config/database");
 module.exports = {
     create: (data, callback) => {
         pool.query(
-            `INSERT INTO users (name, surname, userName,email, password, adress, phone_number, isolated , maxDistanceAccepted, startHour , finalHour) VALUES (?,?,?,?,?,?,?,?,?,?,?)`, [
-            data.name,
-            data.surname,
-            data.username,
-            data.email,
-            data.password1,
-            data.adress,
-            data.phone_number,
-            data.isolated,
-            data.maxDistanceAccepted,
-            data.startHour,
-            data.finalHour
-        ],
+            `INSERT INTO users (name, surname, userName,email, password, address, phone_number, isolated , maxDistanceAccepted, startHour , finalHour) VALUES (?,?,?,?,?,?,?,?,?,?,?)`, [
+                data.name,
+                data.surname,
+                data.userName,
+                data.email,
+                data.password1,
+                data.address,
+                data.phone_number,
+                data.isolated,
+                data.maxDistanceAccepted,
+                data.startHour,
+                data.finalHour
+            ],
             (error, results, fiels) => {
                 if (error) {
                     return callback(error);
@@ -27,11 +27,11 @@ module.exports = {
     createGmailAccount: (data, callback) => {
         pool.query(
             `INSERT INTO users (id,name, surname, email) VALUES (?,?,?,?)`, [
-            data.id,
-            data.name,
-            data.surname,
-            data.email,
-        ],
+                data.id,
+                data.name,
+                data.surname,
+                data.email,
+            ],
             (error, results, fiels) => {
                 if (error) {
                     return callback(error);
@@ -54,9 +54,9 @@ module.exports = {
     updateAddress: (data, callback) => {
         pool.query(
             `update users set address = ? where id= ?`, [
-            data.address,
-            data.id
-        ],
+                data.address,
+                data.id
+            ],
             (error, results, fields) => {
                 if (error) {
                     callback(error);
@@ -68,9 +68,9 @@ module.exports = {
     updatePhone: (data, callback) => {
         pool.query(
             `update users set phone_number = ? where id= ?`, [
-            data.phone_number,
-            data.id
-        ],
+                data.phone_number,
+                data.id
+            ],
             (error, results, fields) => {
                 if (error) {
                     callback(error);
@@ -82,9 +82,9 @@ module.exports = {
     updateIsolated: (data, callBack) => {
         pool.query(
             `update users set isolated = ? where id= ?`, [
-            data.isolated,
-            data.id
-        ],
+                data.isolated,
+                data.id
+            ],
             (error, results, fields) => {
                 if (error) {
                     callBack(error)
@@ -114,5 +114,75 @@ module.exports = {
                 return callBack(null, results[0]);
             }
         );
-    }
+    },
+    updateMaxDistance: (data, callBack) => {
+        pool.query(
+            `update users set maxDistanceAccepted = ? where id=?`, [
+                data.maxDistanceAccepted,
+                data.id
+            ],
+            (error, results, fields) => {
+                if (error) {
+                    callBack(error);
+                }
+                return callBack(null, results[0]);
+            }
+        )
+    },
+    updateStartHour: (data, callBack) => {
+        pool.query(
+            `update users set startHour = ? where id=?`, [
+                data.startHour,
+                data.id
+            ],
+            (error, results, fields) => {
+                if (error) {
+                    callBack(error);
+                }
+                return callBack(null, results[0]);
+            }
+        )
+    },
+    updateFinalHour: (data, callBack) => {
+        pool.query(
+            `update users set finalHour = ? where id=?`, [
+                data.finalHour,
+                data.id
+            ],
+            (error, results, fields) => {
+                if (error) {
+                    callBack(error);
+                }
+                return callBack(null, results[0]);
+            }
+        )
+    },
+    updateSurname: (data, callBack) => {
+        pool.query(
+            `update users set surname = ? where id=?`, [
+                data.surname,
+                data.id
+            ],
+            (error, results, fields) => {
+                if (error) {
+                    callBack(error);
+                }
+                return callBack(null, results[0]);
+            }
+        )
+    },
+    updateName: (data, callBack) => {
+        pool.query(
+            `update users set name = ? where id=?`, [
+                data.name,
+                data.id
+            ],
+            (error, results, fields) => {
+                if (error) {
+                    callBack(error);
+                }
+                return callBack(null, results[0]);
+            }
+        )
+    },
 };
