@@ -9,6 +9,6 @@ app.use(express.json());
 app.use("/api/users", userRouter);
 
 
-app.listen(process.env.APP_PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log("Server running on port " + process.env.APP_PORT + "...");
 });
